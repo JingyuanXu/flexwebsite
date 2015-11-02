@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" minWidth="955" minHeight="600" creationComplete="WS.GetData.send();">
+	<mx:Script>
+
+		<![CDATA[
+			import mx.controls.Alert;
+			import mx.controls.List;
+			import mx.events.DataGridEvent;
+			import mx.events.ListEvent;                       //引用Alert类
+			import mx.managers.PopUpManager; 
+			/*添加代码*/
+			protected function btn_sub_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				var fn:String=tx_firstName.text;
+				var ln:String=tx_lastName.text;
+				var eid:int=int(tx_emplpyeeId.text);
+				WS.Add(fn,ln,eid);
+			
+			}
+			
+			/*修改*/			
+			
+			public function editHanlder():void
+			{   
+				var ew:tccker=new tccker();   
+				var user:User=new User();  
+				user.initUser(dgEmployee.selectedItem.employeeId,dgEmployee.selectedItem.firstName,dgEmployee.selectedItem.lastName);   
+				ew.user=user;   
+				ew.addEventListener(UserEvent.USEREDITE,userEditHandler);   
+				PopUpManager.addPopUp(ew,this,true);   
+				PopUpManager.centerPopUp(ew);   
+			}  
+			
+			public function userEditHandler(e:UserEvent):void
+			{   
+				
+				WS.GetData.lastResult.getItemAt(dgEmployee.selectedIndex).id=e.user.id;   
+				WS.GetData.lastResult.getItemAt(dgEmployee.selectedIndex).fname=e.user.fname;   
+				WS.GetData.lastResult.getItemAt(dgEmployee.selectedIndex).lname=e.user.lname;
+				WS.GetData.lastResult.refresh();   
+			}
+			
+		]]>
+		
+	</mx:Script>
+	
+	<mx:Panel x="10" y="22" width="818" height="473">
+		<mx:HBox width="100%" height="424">
+			<mx:VBox height="408">
+				<mx:Label width="75" height="23" fontSize="11" text="employeeId"/>
+				<mx:Label width="70" fontSize="13" text="lastName"/>
+				<mx:Label width="72" fontSize="13" text="firstName"/>
+			</mx:VBox>
+			<mx:VBox height="408">
+				<mx:TextInput id="tx_emplpyeeId"/>
+				<mx:TextInput id="tx_lastName"/>
+				<mx:TextInput id="tx_firstName"/>
+				<mx:Button id="btn_sub" label="提交" click="btn_sub_clickHandler(event)"/>
+			</mx:VBox>
+			<mx:DataGrid id="dgEmployee" width="397" height="409"
+						 dataProvider="{WS.GetData.lastResult}" >
+				
+				<mx:columns>
+					
+					<mx:DataGridColumn headerText="用户编号" dataField= "employeeId"/>                                               <!--数据列-->
+					
+					<mx:DataGridColumn headerText="姓" dataField="firstName"/>                                                              <!--数据列-->
+					
+					<mx:DataGridColumn headerText="名" dataField="lastName"/>                                                               <!--数据列-->
+					
+					<mx:DataGridColumn headerText="修改">   
+						<mx:itemRenderer>   
+							<mx:Component>   
+								<mx:HBox>   
+									<mx:Button label="编辑" click="outerDocument.editHanlder();"/>   
+								</mx:HBox>   
+							</mx:Component>   
+						</mx:itemRenderer>   
+					</mx:DataGridColumn>   
+
+				</mx:columns>
+				
+			</mx:DataGrid>
+		</mx:HBox>
+		
+		<!--定义数据列表，绑定来自数据库的数据-->
+		
+	</mx:Panel>
+	
+	<!--定义"WebService"组件，连接来自外部的WebService-->
+	
+	<mx:WebService id="WS" wsdl="http://localhost:6204/WebSite1/WebService.asmx?WSDL"
+				   
+				   fault="Alert.show(event.fault.faultString, 'Error')">
+		
+		<mx:operation name="GetData" resultFormat="object" />
+		
+	</mx:WebService>
+</mx:Application>
+
+	
+	
+	
+	
+	

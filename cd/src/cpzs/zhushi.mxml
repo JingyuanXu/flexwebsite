@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="400" height="300">
+	<mx:Script>
+		<![CDATA[
+			import mx.controls.Alert;
+			[Bindable]
+			[Embed(source="asset/5.jpg")]
+			public var dc1:Class;
+			[Embed(source="asset/5.jpg")]
+			public var dc2:Class;
+			[Embed(source="asset/5.jpg")]
+			public var dc3:Class;
+			[Embed(source="asset/4.jpg")]
+			public var dc4:Class;
+			[Embed(source="asset/5.jpg")]
+			public var dc5:Class;
+			protected function DCSelection_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				lbDC.text=DCSelection.selectedItem.label;			
+			}
+		]]>
+	</mx:Script>
+	
+	<mx:TileList id="DCSelection" x="9" y="5" columnWidth="110" rowHeight="100" height="204" width="443" click="DCSelection_clickHandler(event)">
+		<mx:dataProvider>
+			<mx:Array>
+				<mx:Object label="我是好吃的1" icon="{dc1}"/>
+				<mx:Object label="我是好吃的2" icon="{dc2}" />
+				<mx:Object label="我是好吃的3" icon="{dc3}"/>
+				<mx:Object label="我是好吃的4" icon="{dc4}"/>
+				<mx:Object label="我是好吃的5" icon="{dc5}"/>
+				
+			</mx:Array>
+		</mx:dataProvider>
+	</mx:TileList>
+	<mx:Label id="lbDC" x="10" y="216" width="442" height="166" enabled="true" fontSize="20"
+			  text="Lable"/>
+</mx:Canvas>

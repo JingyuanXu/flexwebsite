@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:TitleWindow xmlns:mx="http://www.adobe.com/2006/mxml" width="286" height="188">
+	
+	<mx:Script>
+		<![CDATA[
+			import cpzs.ViewModelLocator;
+			
+			import mx.managers.PopUpManager;
+			private static var modelLocator:ViewModelLocator=ViewModelLocator.getIntance();
+			[Bindable]
+			private var MyText:String="";
+			protected function btnLogin_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				modelLocator.arrAddrList.addItem({sl:txinput.text});
+				
+				
+			}
+			
+			protected function numbtn1_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				
+				var i:String;
+				i=bth1.label;
+				txinput.text+=i;
+			}
+			protected function numbtn2_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				
+				var i:String;
+				i=bth2.label;
+				txinput.text+=i;
+			}
+			protected function numbtn3_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				
+				var i:String;
+				i=bth3.label;
+				txinput.text+=i;
+			}
+			protected function numbtn4_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				
+				var i:String;
+				i=bth4.label;
+				txinput.text+=i;
+			}
+			protected function numbtn5_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				
+				var i:String;
+				i=bth5.label;
+				txinput.text+=i;
+			}
+			protected function numbtn6_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				
+				var i:String;
+				i=bth6.label;
+				txinput.text+=i;
+			}
+			protected function numbtn7_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				
+				var i:String;
+				i=bth7.label;
+				txinput.text+=i;
+			}
+			protected function numbtn8_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				
+				var i:String;
+				i=bth8.label;
+				txinput.text+=i;
+			}
+			protected function numbtn9_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				
+				var i:String;
+				i=bth9.label;
+				txinput.text+=i;
+			}
+			protected function numbtn0_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				
+				var i:String;
+				i=bth0.label;
+				txinput.text+=i;
+			}
+			
+			
+			
+			public function set myText(value:String):void
+			{
+				MyText=value;
+				
+			}
+			public function get myText():String
+			{
+				return MyText;
+			}
+			
+		]]>
+	</mx:Script>
+	
+	
+	
+	<mx:HBox>
+		<mx:VBox>
+			<mx:Label width="73" text="菜名:" id="lbcm"/>
+		</mx:VBox>
+		<mx:VBox>
+			<mx:TextInput id="txinput" />
+		</mx:VBox>
+	</mx:HBox>
+	<mx:HBox >
+		<mx:VBox width="18" height="111">
+			
+			</mx:VBox>
+		<mx:VBox width="68" height="112">
+			<mx:Button label="1" click="numbtn1_clickHandler(event)" id="bth1"/>
+			<mx:Button label="4" click="numbtn4_clickHandler(event)" id="bth4"/>
+			<mx:Button label="7" click="numbtn7_clickHandler(event)" id="bth7"/>
+			<mx:Button id="btnLogin" label="确定" click="btnLogin_clickHandler(event)"/>
+			
+		</mx:VBox>
+		<mx:VBox width="71" height="112">
+			<mx:Button label="2" click="numbtn2_clickHandler(event)" id="bth2"/>
+			<mx:Button label="5" click="numbtn5_clickHandler(event)" id="bth5"/>
+			<mx:Button label="8" click="numbtn8_clickHandler(event)" id="bth8"/>
+			<mx:Button label="0" click="numbtn0_clickHandler(event)" id="bth0"/>
+			
+		</mx:VBox>
+		<mx:VBox width="73" height="111">
+			<mx:Button label="3" click="numbtn3_clickHandler(event)" id="bth3"/>
+			<mx:Button label="6" click="numbtn6_clickHandler(event)" id="bth6"/>
+			<mx:Button label="9" click="numbtn9_clickHandler(event)" id="bth9"/>
+			<mx:Button label="取消"/>
+			
+		</mx:VBox>
+	</mx:HBox>
+	
+	
+</mx:TitleWindow>

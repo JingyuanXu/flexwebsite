@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:TitleWindow xmlns:mx="http://www.adobe.com/2006/mxml"
+				width="400" height="300" layout="absolute" title="112">
+	<mx:Script>
+		<![CDATA[
+			
+			import mx.managers.PopUpManagerChildList;   
+			import mx.utils.StringUtil;   
+			import User;   
+			import mx.managers.PopUpManager;
+			import mx.controls.Alert;
+			public var user:User;  
+			private function subEdit():void{   
+				user.id=parseInt(StringUtil.trim(employeeId.text));   
+				user.fname=StringUtil.trim(firstName.text);   
+				user.lname=StringUtil.trim(lastName.text);
+		//		var e:UserEvent=new UserEvent(UserEvent.USEREDITE,user);   
+		//		dispatchEvent(e);   
+				WS.Update(user.fname,user.lname,user.id);
+				PopUpManager.removePopUp(this);   
+			}   
+
+
+		]]>
+	</mx:Script>
+	<mx:TextInput x="140" y="10" text="{user.id}" id="employeeId"/>
+	<mx:TextInput x="140" y="60"  text="{user.fname}" id="firstName"/>
+	<mx:TextInput  x="140" y="127"  text="{user.lname}" id="lastName"/>
+	<mx:Label x="34" y="8" width="49" height="20" fontSize="14" text="Id"/>
+	
+	<mx:Label x="34" y="125" width="49" height="22" fontSize="14" text="LAST"/>
+	<mx:Label x="34" y="60" width="49" height="22" fontSize="14" text="FIRST"/>
+	<mx:Button x="84" y="193" label="确认" click="subEdit()"/>
+	<mx:Button x="240" y="193" label="取消"/>
+	<mx:WebService id="WS" wsdl="http://localhost:6204/WebSite1/WebService.asmx?WSDL"
+				   
+				   fault="Alert.show(event.fault.faultString, 'Error')">
+		
+		<mx:operation name="GetData" resultFormat="object" />
+		
+	</mx:WebService>
+	
+</mx:TitleWindow>
